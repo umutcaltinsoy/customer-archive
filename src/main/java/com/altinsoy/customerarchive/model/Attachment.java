@@ -28,6 +28,10 @@ public class Attachment {
     @Lob
     private byte[] data;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
     public Attachment(String fileName, String fileType, byte[] data) {
         this.fileName = fileName;
         this.fileType = fileType;
