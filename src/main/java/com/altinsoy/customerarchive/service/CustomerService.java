@@ -1,16 +1,17 @@
 package com.altinsoy.customerarchive.service;
 
-import com.altinsoy.customerarchive.model.Customer;
+import com.altinsoy.customerarchive.model.dto.CustomerDto;
 
 import java.util.List;
 
 public interface CustomerService {
-    Customer saveCustomer(Customer customer);
+    CustomerDto saveCustomer(CustomerDto customerDto);
 
-    List<Customer> getAllCustomer();
+    List<CustomerDto> getAllCustomer();
 
-    Customer getCustomerByIdentityNumber(String identityNumber);
+    CustomerDto getCustomerByIdentityNumber(String identityNumber);
 
     void deleteCustomerByIdentityNumber(String identityNumber);
 
+    CustomerDto updateCustomer(String identityNumber, CustomerDto customerDto);
 }
