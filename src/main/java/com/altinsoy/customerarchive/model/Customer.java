@@ -3,6 +3,7 @@ package com.altinsoy.customerarchive.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,4 +29,7 @@ public class Customer {
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Attachment> attachmentList;
 }
