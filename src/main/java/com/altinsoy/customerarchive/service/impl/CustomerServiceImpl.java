@@ -33,6 +33,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Customer getById(Long id) {
+        return customerRepository.findById(id).get();
+    }
+
+    @Override
     public List<CustomerDto> getAllCustomer() {
         List<Customer> customerList = customerRepository.findAll();
         return customerList.stream()
@@ -72,6 +77,5 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setName(customerDto.getName());
         customer.setSurname(customerDto.getSurname());
         customer.setEmail(customerDto.getEmail());
-
     }
 }

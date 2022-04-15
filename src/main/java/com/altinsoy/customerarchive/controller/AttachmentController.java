@@ -1,7 +1,7 @@
 package com.altinsoy.customerarchive.controller;
 
 import com.altinsoy.customerarchive.model.Attachment;
-import com.altinsoy.customerarchive.model.ResponseData;
+import com.altinsoy.customerarchive.model.dto.AttachmentResponseDto;
 import com.altinsoy.customerarchive.service.AttachmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
@@ -21,16 +21,17 @@ public class AttachmentController {
     private final AttachmentService attachmentService;
 
     @PostMapping("/upload")
-    public ResponseData uploadFile(@RequestParam("file") MultipartFile file) throws Exception {
+    public AttachmentResponseDto uploadFile(@RequestParam("file") MultipartFile file,
+                                            @RequestParam(name = "id") Long id) throws Exception {
         Attachment attachment = null;
         String downloadURL = "";
-        attachment = attachmentService.saveAttachment(file);
+        attachment = attachmentService.saveAttachment(file, id);
         downloadURL = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/download/")
                 .path(attachment.getId())
                 .toUriString();
 
-        return new ResponseData(attachment.getFileName(),
+        return new AttachmentResponseDto(attachment.getFileName(),
                 downloadURL,
                 file.getContentType(),
                 file.getSize());
