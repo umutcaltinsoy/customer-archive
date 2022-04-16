@@ -1,0 +1,24 @@
+2022-04-16 14:16:44.153  INFO 15836 --- [main] c.a.c.CustomerArchiveApplication         : Starting CustomerArchiveApplication using Java 11.0.12 on DESKTOP-I650T47 with PID 15836 (C:\Users\Asus\Desktop\Assignment\nishbs\target\classes started by Asus in C:\Users\Asus\Desktop\Assignment\nishbs)
+2022-04-16 14:16:44.179  INFO 15836 --- [main] c.a.c.CustomerArchiveApplication         : No active profile set, falling back to 1 default profile: "default"
+2022-04-16 14:16:50.372  INFO 15836 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-16 14:16:51.505  INFO 15836 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1095 ms. Found 4 JPA repository interfaces.
+2022-04-16 14:16:55.772  INFO 15836 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-04-16 14:16:55.860  INFO 15836 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-04-16 14:16:55.861  INFO 15836 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.60]
+2022-04-16 14:16:57.471  INFO 15836 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-04-16 14:16:57.471  INFO 15836 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 12757 ms
+2022-04-16 14:16:58.392  INFO 15836 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-16 14:16:58.724  INFO 15836 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.7.Final
+2022-04-16 14:16:59.808  INFO 15836 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-16 14:17:00.400  INFO 15836 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-04-16 14:17:01.992  INFO 15836 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-04-16 14:17:02.085  INFO 15836 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-04-16 14:17:07.220  INFO 15836 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-16 14:17:07.231  INFO 15836 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-16 14:17:09.120  WARN 15836 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-16 14:17:11.134  INFO 15836 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-04-16 14:17:11.196  INFO 15836 --- [main] c.a.c.CustomerArchiveApplication         : Started CustomerArchiveApplication in 29.103 seconds (JVM running for 33.738)
+2022-04-16 14:17:33.357  INFO 15836 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-16 14:17:33.359  INFO 15836 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-04-16 14:17:33.361  INFO 15836 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-04-16 14:17:34.879  INFO 15836 --- [http-nio-8080-exec-2] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 742 ms
