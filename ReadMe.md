@@ -45,7 +45,7 @@
 
 ## Entity Relationship Diagram
 
-![](images/ER.PNG)
+![](images/ERD.PNG)
 
 
 ### Upload File with User
