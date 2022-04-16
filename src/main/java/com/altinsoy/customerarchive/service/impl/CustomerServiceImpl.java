@@ -1,5 +1,6 @@
 package com.altinsoy.customerarchive.service.impl;
 
+import com.altinsoy.customerarchive.core.utilities.*;
 import com.altinsoy.customerarchive.exception.CustomerNotFoundException;
 import com.altinsoy.customerarchive.mapper.CustomerMapper;
 import com.altinsoy.customerarchive.model.Customer;
@@ -14,6 +15,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.altinsoy.customerarchive.core.constants.Messages.*;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -23,13 +26,13 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerMapper customerMapper;
 
     @Override
-    public CustomerDto saveCustomer(CustomerDto customerDto) {
+    public DataResult<CustomerDto> saveCustomer(CustomerDto customerDto) {
         Customer customer = customerMapper.mapCustomerDtoToCustomer(customerDto);
         Optional<Customer> customer1 = customerRepository.findByIdentityNumber(customerDto.getIdentityNumber());
         if (customer1.isEmpty()) {
             customerRepository.save(customer);
         }
-        return customerMapper.mapCustomerToCustomerDto(customer);
+        return new SuccessDataResult(customerMapper.mapCustomerToCustomerDto(customer), SUCCESS_ADDED);
     }
 
     @Override
@@ -38,38 +41,40 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerDto> getAllCustomer() {
+    public DataResult<List<CustomerDto>> getAllCustomer() {
         List<Customer> customerList = customerRepository.findAll();
-        return customerList.stream()
+
+        return new SuccessDataResult(customerList.stream()
                 .map(customerMapper::mapCustomerToCustomerDto)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()), SUCCESS_GET);
     }
 
     @Override
-    public CustomerDto getCustomerByIdentityNumber(String identityNumber) {
+    public DataResult<CustomerDto> getCustomerByIdentityNumber(String identityNumber) {
         CustomerDto customerDto = new CustomerDto();
         Optional<Customer> customer = customerRepository.findByIdentityNumber(identityNumber);
         if (customer.isPresent()) {
             customerDto = customerMapper.mapCustomerToCustomerDto(customer.get());
-            return customerDto;
+            return new SuccessDataResult(customerDto);
         }
-        return customerDto;
+        return new ErrorDataResult(customerDto, "Can't find!");
     }
 
     @Override
-    public void deleteCustomerByIdentityNumber(String identityNumber) {
+    public Result deleteCustomerByIdentityNumber(String identityNumber) {
         customerRepository.deleteByIdentityNumber(identityNumber);
+        return new SuccessResult(SUCCESS_DELETED);
     }
 
     @Override
-    public CustomerDto updateCustomer(String identityNumber, CustomerDto customerDto) {
+    public DataResult<CustomerDto> updateCustomer(String identityNumber, CustomerDto customerDto) {
         Customer customer = customerRepository.findByIdentityNumber(identityNumber).orElseThrow(
                 () -> new CustomerNotFoundException("Customer couldn't find with given ID : " + identityNumber)
         );
 
         setCustomerDetails(customerDto, customer);
         Customer updatedCustomer = customerRepository.save(customer);
-        return customerMapper.mapCustomerToCustomerDto(updatedCustomer);
+        return new SuccessDataResult(customerMapper.mapCustomerToCustomerDto(updatedCustomer), SUCCESS_UPDATED);
     }
 
     private void setCustomerDetails(CustomerDto customerDto, Customer customer) {

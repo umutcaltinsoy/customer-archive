@@ -2,6 +2,8 @@ package com.altinsoy.customerarchive.model;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -30,6 +32,7 @@ public class Attachment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Customer customer;
 
     public Attachment(String fileName, String fileType, byte[] data) {

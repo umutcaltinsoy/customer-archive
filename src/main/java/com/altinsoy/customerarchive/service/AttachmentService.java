@@ -1,6 +1,7 @@
 package com.altinsoy.customerarchive.service;
 
 import com.altinsoy.customerarchive.model.Attachment;
+import com.altinsoy.customerarchive.model.dto.AttachmentDto;
 import com.altinsoy.customerarchive.model.dto.GetAttachmentsDto;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,4 +13,8 @@ public interface AttachmentService {
     Attachment getAttachment(String fileId) throws Exception;
 
     List<GetAttachmentsDto> getAttachmentByCustomerId(Long id);
+
+    void deleteFile(String fileId);
+
+    List<AttachmentDto> getAllAttachments();
 }

@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface AttachmentRepository extends JpaRepository<Attachment, String> {
     List<Attachment> findAttachmentByCustomerId(Long id);
+
+    void deleteById(String fileId);
 }

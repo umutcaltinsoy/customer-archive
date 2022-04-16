@@ -2,6 +2,7 @@ package com.altinsoy.customerarchive.service.impl;
 
 import com.altinsoy.customerarchive.model.Attachment;
 import com.altinsoy.customerarchive.model.Customer;
+import com.altinsoy.customerarchive.model.dto.AttachmentDto;
 import com.altinsoy.customerarchive.model.dto.GetAttachmentsDto;
 import com.altinsoy.customerarchive.repository.AttachmentRepository;
 import com.altinsoy.customerarchive.service.AttachmentService;
@@ -57,5 +58,17 @@ public class AttachmentServiceImpl implements AttachmentService {
     public List<GetAttachmentsDto> getAttachmentByCustomerId(Long id) {
         return attachmentRepository.findAttachmentByCustomerId(id).stream().map(attachment
                 -> mapper.map(attachment, GetAttachmentsDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteFile(String fileId) {
+        attachmentRepository.deleteById(fileId);
+    }
+
+    @Override
+    public List<AttachmentDto> getAllAttachments() {
+        List<Attachment> attachmentList = attachmentRepository.findAll();
+        return attachmentList.stream().map(attachment
+                -> mapper.map(attachment, AttachmentDto.class)).collect(Collectors.toList());
     }
 }

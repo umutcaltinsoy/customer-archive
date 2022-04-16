@@ -30,6 +30,6 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Attachment> attachmentList;
 }
