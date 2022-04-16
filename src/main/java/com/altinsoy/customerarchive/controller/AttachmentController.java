@@ -2,6 +2,7 @@ package com.altinsoy.customerarchive.controller;
 
 import com.altinsoy.customerarchive.model.Attachment;
 import com.altinsoy.customerarchive.model.dto.AttachmentResponseDto;
+import com.altinsoy.customerarchive.model.dto.GetAttachmentsDto;
 import com.altinsoy.customerarchive.service.AttachmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
@@ -12,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -44,5 +47,11 @@ public class AttachmentController {
         return ResponseEntity.ok().contentType(MediaType.parseMediaType(attachment.getFileType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + attachment.getFileName() + "\"")
                 .body(new ByteArrayResource(attachment.getData()));
+    }
+
+    @GetMapping("/files")
+    public ResponseEntity<List<GetAttachmentsDto>> getCustomerFiles(@RequestParam Long id) {
+        List<GetAttachmentsDto> getAttachmentsDtos = attachmentService.getAttachmentByCustomerId(id);
+        return ResponseEntity.ok(getAttachmentsDtos);
     }
 }
